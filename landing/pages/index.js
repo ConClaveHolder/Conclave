@@ -12,7 +12,7 @@ export default function Home() {
       <header className="site-header">
         <div className="container header-inner">
           <div className="logo">
-            <img src="/logo.svg" alt="Conclave" />
+            <img src="/logo.png" alt="Conclave" style={{borderRadius:'8px'}} />
             <span className="brand">Conclave</span>
           </div>
           <nav className="nav">
