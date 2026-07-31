@@ -1,0 +1,34 @@
+name: CI — landing build
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build-landing:
+    name: Build landing (landing/)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies (landing)
+        run: npm ci
+        working-directory: landing
+
+      - name: Build landing
+        run: npm run build
+        working-directory: landing
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "landing/.next" ]; then echo "Build failed: .next not found" && exit 1; fi
