@@ -17,6 +17,8 @@ export default function Home() {
           </div>
           <nav className="nav">
             <a href="#features">Features</a>
+            <a href="/mission">Mission</a>
+            <a href="/faq">FAQ</a>
             <a href="#community">Community</a>
             <a href="#cta" className="btn-outline">Get Started</a>
           </nav>
