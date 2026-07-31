@@ -2,6 +2,9 @@ import Head from 'next/head'
 import { useState } from 'react'
 
 export default function Home() {
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState(null)
+
   return (
     <>
       <Head>
@@ -51,9 +54,9 @@ export default function Home() {
                 } finally { setLoading(false) }
               }}>
                 <input name="email" type="email" placeholder="you@example.com" required />
-                <button className="btn-primary" type="submit" disabled={false}>{/* loading state could be added */}Join the waitlist</button>
+                                <button className="btn-primary" type="submit" disabled={loading}>{loading ? 'Joining...' : 'Join the waitlist'}</button>
                 <button type="button" className="btn-ghost" onClick={()=>{document.querySelector('#features')?.scrollIntoView({behavior:'smooth'})}}>See features</button>
-                <div className="waitlist-message" aria-live="polite"></div>
+                                <div className="waitlist-message" aria-live="polite">{message ? message.text : ''}</div>
               </form>
             </div>
           </div>
