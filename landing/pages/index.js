@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 export default function Home() {
   return (
@@ -31,8 +32,29 @@ export default function Home() {
             <h1>Welcome to Conclave — your community, your rules</h1>
             <p className="lead">A dedicated, respectful space for the furry fandom — better moderation, better discovery, and focused community tools.</p>
             <div className="hero-cta">
-              <a id="cta" className="btn-primary" href="#">Join the waitlist</a>
-              <a className="btn-ghost" href="#features">See features</a>
+              <form className="waitlist-form" onSubmit={async (e) => {
+                e.preventDefault();
+                const email = e.target.email?.value?.trim();
+                if (!email) { setMessage({type:'error', text:'Please enter a valid email.'}); return }
+                setLoading(true);
+                try {
+                  const res = await fetch('/api/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+                  if (res.ok) {
+                    setMessage({type:'success', text:'Thanks — you are on the waitlist!'});
+                    e.target.reset();
+                  } else {
+                    const json = await res.json().catch(()=>({message:'Unknown error'}));
+                    setMessage({type:'error', text: json.message || 'Submission failed'});
+                  }
+                } catch (err) {
+                  setMessage({type:'error', text: 'Network error'});
+                } finally { setLoading(false) }
+              }}>
+                <input name="email" type="email" placeholder="you@example.com" required />
+                <button className="btn-primary" type="submit" disabled={false}>{/* loading state could be added */}Join the waitlist</button>
+                <button type="button" className="btn-ghost" onClick={()=>{document.querySelector('#features')?.scrollIntoView({behavior:'smooth'})}}>See features</button>
+                <div className="waitlist-message" aria-live="polite"></div>
+              </form>
             </div>
           </div>
         </section>
