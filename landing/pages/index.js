@@ -1,0 +1,74 @@
+import Head from 'next/head'
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>Conclave — Community for the Furry Fandom</title>
+        <meta name="description" content="Conclave: a community-first platform for the furry fandom — safer, private, and community-led." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
+      <header className="site-header">
+        <div className="container header-inner">
+          <div className="logo">
+            <img src="/logo.svg" alt="Conclave" />
+            <span className="brand">Conclave</span>
+          </div>
+          <nav className="nav">
+            <a href="#features">Features</a>
+            <a href="#community">Community</a>
+            <a href="#cta" className="btn-outline">Get Started</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section className="hero">
+          <div className="container hero-inner">
+            <h1>Welcome to Conclave — your community, your rules</h1>
+            <p className="lead">A dedicated, respectful space for the furry fandom — better moderation, better discovery, and focused community tools.</p>
+            <div className="hero-cta">
+              <a id="cta" className="btn-primary" href="#">Join the waitlist</a>
+              <a className="btn-ghost" href="#features">See features</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="features container">
+          <h2>Features built for community</h2>
+          <div className="feature-grid">
+            <div className="feature">
+              <h3>Private groups</h3>
+              <p>Create invite-only circles for roleplay, art trades, or guilds.</p>
+            </div>
+            <div className="feature">
+              <h3>Robust moderation</h3>
+              <p>Tools for moderators to keep spaces safe and welcoming.</p>
+            </div>
+            <div className="feature">
+              <h3>Discoverable content</h3>
+              <p>Find artists, events, and conversations tailored to you.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="community" className="community container">
+          <h2>Join the community</h2>
+          <p>Connect via channels, groups, and events — bring your friends and grow together.</p>
+          <div className="community-links">
+            <a className="chip" href="#">Discord (bridge)</a>
+            <a className="chip" href="#">Telegram (bridge)</a>
+            <a className="chip" href="#">Official Blog</a>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div className="container">
+          <p>© {new Date().getFullYear()} Conclave — Built for the furry community.</p>
+        </div>
+      </footer>
+    </>
+  )
+}
